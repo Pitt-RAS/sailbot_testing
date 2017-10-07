@@ -9,8 +9,9 @@ int pos= 0;
 byte incomingByte;
 
 void setup() {
-  Serial.begin(9600);
+  mystepper.setSpeed(60);
   myservo.attach(6);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -26,10 +27,10 @@ void loop() {
       myservo.write(pos);
     }
     else if(incomingByte=='w'){
-      mystepper.step(2);
+      mystepper.step(50);
     }
     else if(incomingByte=='s'){
-      mystepper.step(-2);
+      mystepper.step(-50);
     }
   }
 }
