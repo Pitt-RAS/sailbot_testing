@@ -18,12 +18,16 @@ void loop() {
   if(Serial.available()>0){
     incomingByte= Serial.read();
   
-    if(incomingByte=='.' && pos<=178){
-      pos+=2;
+    if(incomingByte==',' && pos<=177){
+      pos+=3;
       myservo.write(pos);
     }
-    else if(incomingByte==',' && pos>=2){
-      pos-=2;
+    else if(incomingByte=='.' && pos>=3){
+      pos-=3;
+      myservo.write(pos);
+    }
+    else if(incomingByte=='h'){
+      pos= 90;
       myservo.write(pos);
     }
     else if(incomingByte=='w'){

@@ -1,13 +1,11 @@
 #!/bin/sh
 
 while true; do
-	read -n1 -s command
-
-	command="$command\n"	
+	read -n1 -s command	
 
 	echo $command
 
-	if [ $command = "q\n" ]; then
+	if [ $command = "q" ]; then
 		break;
 	fi
 done
