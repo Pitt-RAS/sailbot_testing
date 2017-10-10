@@ -16,21 +16,18 @@ except:
   exit(1)
 
 #initialize monitor variables
-rudder = 0;
-sheets = 0;
+rudder = 90
+sheets = 0
 
-#wait 5 seconds for serial to open
-print('5')
-time.sleep(1)
-print('4')
-time.sleep(1)
-print('3')
-time.sleep(1)
-print('2')
-time.sleep(1)
-print('1')
-time.sleep(1)
-print('READY\n')
+#wait 10 seconds for serial to open
+print('Please wait, opening serial port.')
+for i in range(10,0,-1):
+  print i,
+  sys.stdout.flush()
+  time.sleep(1)
+  if(i==9):
+    ser.write('h')
+print('\nREADY\n')
 
 #',' = rudder left
 #'.' = rudder right
@@ -51,8 +48,7 @@ while line!='q':
     rudder= rudder-3
   elif(line=='h'):
     rudder= 90
-#  elif(line=='s' and sheets<=INSERT MAX VALUE):
-  elif(line=='s'):
+  elif(line=='s' and sheets<=290):
     sheets= sheets+10
   elif(line=='w' and sheets>=10):
     sheets= sheets-10
@@ -66,5 +62,15 @@ while line!='q':
   line = sys.stdin.read(1)
   sys.stdin.read(1)
 
+print('Returning Sheet To Zero.')
+i= 0
+while i<=(sheets-10):
+  ser.write('w\n')
+  i= i+10
+  time.sleep(0.5)
+
 #close serial port
+print('Closing Serial Port.')
 ser.close()
+
+print('Goodbye!')

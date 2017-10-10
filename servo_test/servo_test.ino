@@ -5,7 +5,8 @@ const int SPR= 200;
 
 Servo myservo;
 Stepper mystepper(SPR, 8, 9, 10, 11);
-int pos= 0;
+int rudder= 0;
+int sheets= 0;
 byte incomingByte;
 
 void setup() {
@@ -18,22 +19,24 @@ void loop() {
   if(Serial.available()>0){
     incomingByte= Serial.read();
   
-    if(incomingByte==',' && pos<=177){
-      pos+=3;
-      myservo.write(pos);
+    if(incomingByte==',' && rudder<=177){
+      rudder+=3;
+      myservo.write(rudder);
     }
-    else if(incomingByte=='.' && pos>=3){
-      pos-=3;
-      myservo.write(pos);
+    else if(incomingByte=='.' && rudder>=3){
+      rudder-=3;
+      myservo.write(rudder);
     }
     else if(incomingByte=='h'){
-      pos= 90;
-      myservo.write(pos);
+      rudder= 90;
+      myservo.write(rudder);
     }
-    else if(incomingByte=='w'){
+    else if(incomingByte=='w' && sheets>=10){
+      sheets-=10;
       mystepper.step(50);
     }
-    else if(incomingByte=='s'){
+    else if(incomingByte=='s' && sheets<=290){
+      sheets+=10;
       mystepper.step(-50);
     }
   }
