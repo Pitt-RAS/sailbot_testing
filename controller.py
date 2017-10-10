@@ -9,7 +9,12 @@ import sys
 import time
 
 #initialize serial port at 9600 baud
-ser = serial.Serial('/dev/cu.usbmodem1421', 9600)
+try:
+  ser = serial.Serial('/dev/cu.usbmodem1421', 9600)
+except:
+  print('Could not open serial port. Check USB.')
+  exit(1)
+
 #initialize monitor variables
 rudder = 0;
 sheets = 0;
