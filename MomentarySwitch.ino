@@ -1,6 +1,6 @@
 #include <Servo.h>
 #include <Stepper.h>
-#define BEEPER 12
+#define BEEPER 3
 
 const int SPR= 200;
 
@@ -21,6 +21,8 @@ void setup() {
   pinMode(pin1,INPUT);
   pinMode(pin2,INPUT);
   pinMode(BEEPER, OUTPUT);
+  tone(BEEPER,150,1000);
+  delay(3000);
 }
 
 void loop() {
