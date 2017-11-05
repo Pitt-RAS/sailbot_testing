@@ -34,7 +34,7 @@ void loop ()
   delay(2000);
   int i = 0;
   const float pi = 3.1415927;
-  float forget = 0.9; // 0 --> only newsest wind angle matters. 1 --> all past & present wind angles matters equally
+  float memory = 0.9; // 0 --> only newsest wind angle matters. 1 --> all past & present wind angles matters equally
   float sinweight = 0; 
   float cosweight = 0; 
   float sinval = 0;
@@ -45,12 +45,12 @@ void loop ()
   while(1) {
     val = enc.read () * .08789;
     //exponential weighting of sin component
-    sinweight = forget*sinweight + 1;
+    sinweight = memory*sinweight + 1;
     sinval = (1-1/sinweight)*sinval + (1/sinweight)*sin(val*pi/180);
     //sinval = sin(val*pi/180);
 
     //exponential weighting of cos component
-    cosweight = forget*cosweight + 1;
+    cosweight = memory*cosweight + 1;
     cosval = (1-1/cosweight)*cosval + (1/cosweight)*cos(val*pi/180);
     //cosval = cos(val*pi/180);
     //Serial.print ("Angle : ");
