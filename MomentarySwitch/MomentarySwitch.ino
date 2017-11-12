@@ -8,10 +8,10 @@ Servo myservo;
 Stepper mystepper(SPR, 8, 9, 10, 11);
 int rudder= 0;
 int sheets= 0;
-int pin1 = 1;
-int pin2 = 2;
+int pin1 = 4;
+int pin2 = 5;
 byte incomingByte;
-int count;
+int count = 0;
 int i = 0;
 
 void setup() {
@@ -23,12 +23,10 @@ void setup() {
   pinMode(BEEPER, OUTPUT);
   tone(BEEPER,150,1000);
   delay(3000);
+  Serial.flush();
 }
 
 void loop() {
-  Serial.print(digitalRead(pin1));
-  Serial.print(digitalRead(pin2));
-  
   if(digitalRead(pin1) == HIGH){
     tone(BEEPER,150,1000);
     Serial.print("Count = " + count);
@@ -45,6 +43,7 @@ void loop() {
     mystepper.step(50);
     if(sheets == 0){
       i = 0;
+      Serial.print("Count = " + count+1);
       count++;
     }
   }
@@ -53,6 +52,7 @@ void loop() {
     mystepper.step(-50);
     if(sheets == 300){
       i = 1;
+      Serial.print("Count = " + count+1);
       count++;
     }
   }
