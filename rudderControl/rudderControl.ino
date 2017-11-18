@@ -1,6 +1,6 @@
 /* 
- * rosserial Subscriber Example
- * Blinks an LED on callback
+ * rosserial subscriber to rudder heading
+ * moves rudder to match heading
  */
 
 #include <ros.h>
@@ -11,7 +11,7 @@ Servo myservo;
 ros::NodeHandle  nh;
 
 void messageCb( const std_msgs::Int32& rudderHeading){
-  myservo.write(int(rudderHeading));
+  myservo.write(int(rudderHeading)); //changes rudder heading
 }
 
 ros::Subscriber<std_msgs::Int32> sub("new_rudder_heading", &messageCb );
@@ -25,7 +25,7 @@ void setup()
 
 void loop()
 {  
-  nh.spinOnce();
+  nh.spinOnce(); //brings in info for subscriber
   delay(1);
 }
 
