@@ -1,0 +1,40 @@
+Navigation Heading Algorithm Implementation
+===========================================
+
+(Visualization tested in Chromium 62)
+
+
+Quick Start - View Results
+--------------------------
+
+ - Open visualizer/index.html in a web browser.
+
+
+To Run a New Test Case
+----------------------
+
+ - Change some parameters in simulator.py
+    - boat starting position and heading
+    - target position
+    - wind speed and heading
+    - beating parameter (A.K.A. p_c, which gives n)
+
+ - Run "python2 simulator.py > visualizer/data.js"
+
+ - View visualizer/index.html in a web browser
+
+
+Overview
+--------
+
+ - heading.py - the algorithm (what we're testing)
+
+ - simulator.py - crude simulation of boat motion
+
+ - visualizer - crude visualization of simulation data
+
+
+Notes
+-----
+
+Using the simple polar diagram. Have yet to test a more complicated one.
