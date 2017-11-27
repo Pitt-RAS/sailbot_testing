@@ -15,7 +15,7 @@ heading_boat = 0.0*pi/180
 position_target = (15.0, 15.0)
 
 speed_wind = 2.0
-heading_wind = (180+65)*pi/180
+heading_wind = 65.0*pi/180
 
 beating_parameter = 5.0
 
