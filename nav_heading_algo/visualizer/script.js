@@ -120,7 +120,7 @@ var drawStatic = function() {
 
   /* wind */
   context.strokeStyle = "#ff0000";
-  drawArrow(heading_wind);
+  drawArrow(heading_wind + Math.PI);
 
   context.strokeStyle = "#000000";
 };
