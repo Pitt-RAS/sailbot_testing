@@ -11,7 +11,7 @@ Servo myservo;
 ros::NodeHandle  nh;
 
 void messageCb( const std_msgs::Int32& rudderHeading){
-  myservo.write(int(rudderHeading)); //changes rudder heading
+  myservo.write(rudderHeading.data); //changes rudder heading
 }
 
 ros::Subscriber<std_msgs::Int32> sub("new_rudder_heading", &messageCb );
