@@ -40,14 +40,14 @@ def find_true_speed(angle, apparent_wind_speed, speed_over_ground):
 
     return np.sqrt(opposite_squared)
     
+#Use the Law of Sines to return the angle between the True Wind vector and Apparent Wind Direction
+	
+def find_true_angle(true_wind_speed,apparent_wind_angle, speed_over_ground):
+    true_wind_angle = np.arcsin(((np.sin(apparent_wind_angle))*true_wind_speed)/speed_over_ground)
+    return true_wind_angle
 
-def find_true_angle(true_wind_speed,apparent_wind_angle, course_over_ground):
-    true_wind_angle = 
-    
 
 
-
-#
 def find_true_wind_direction(true_wind_angle):
     
 def main():
@@ -61,6 +61,7 @@ def main():
     true_wind_speed = find_true_speed(awa_cog_angle, apparent_wind_speed, speed_over_ground)
     true_wind_angle = find_true_angle(true_wind_speed, apparent_wind_speed, course_over_ground)
     true_wind_direction = find_true_wind_direction(true_wind_angle)
+	
 
     print "The True Wind Speed is: %s \n and the True Wind Direction is: %d" (true_wind_speed, true_wind_direction)
 
