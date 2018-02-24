@@ -29,6 +29,6 @@ void loop() {
   rudder_pos = (rudder_value - PWM_LO)/(PWM_HI - PWM_LO) * 180 - 90;
   sail_value = pulseIn(sailPIN, HIGH);
   sail_pos = (sail_value - PWM_LO)/(PWM_HI - PWM_LO) * 90;
+  //Serial.println(rudder_pos);
   Serial.println(sail_pos);
-  //Serial.println(sail_pos);
 }
