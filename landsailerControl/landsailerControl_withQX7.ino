@@ -9,9 +9,9 @@
 #include <Servo.h>
 #include <Stepper.h>
 
-byte manualMode_PIN = 3;
-byte rudder_PIN = 5;
-byte sail_PIN = 6;
+byte manualMode_PIN = 3; //comes from pin5 on r9
+byte rudder_PIN = 5; //comes from pin1 on r9
+byte sail_PIN = 6; //comes from pin2 on r9
 double PWM_LO = 982;
 double PWM_HI = 2001;
 int manual_value;
