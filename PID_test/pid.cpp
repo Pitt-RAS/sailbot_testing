@@ -7,6 +7,7 @@ PID::PID(double kP, double kI, double kD) {
 	this->kD = kD;
 	this->setpoint = 0;
 	this->integral = 0;
+	this->firstIter = true;
 	this->lastTime = now();
 }
 
@@ -15,7 +16,7 @@ void PID::setSetpoint(double setpoint) {
 }
 
 double PID::now() {
-	double time = millis()/1000;
+	double time = millis()/1000.0;
 	return time;
 }
 
@@ -27,8 +28,13 @@ double PID::calculate(double actual) {
 
 	integral += error * dt;
 
-	double dEdT = (error - lastError) / dt;
-
+  double dEdT = 0;
+	if(firstIter){
+		firstIter = false;
+	} else {
+		dEdT = (error - lastError) / dt;
+	}
+	
 	lastError = error;
 
 	return error*kP + integral*kI + dEdT*kD;

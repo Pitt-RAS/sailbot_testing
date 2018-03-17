@@ -2,12 +2,15 @@
 #include <Servo.h>
 
 #define pwmOut_pin A1
-#define Kp 0.5
+#define Kp 1.65
 #define Ki 0
-#define Kd 0
+#define Kd 0.75
 
 Servo myservo;
-PID pid = PID(Kp, Kd, Ki); 
+PID pid = PID(Kp, Kd, Ki);
+
+String inputString = "";
+bool outputting = true;
 
 void setup() {
   // put your setup code here, to run once:
@@ -22,25 +25,31 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  delay(10);
+  //delay(10);
   int potValue = analogRead(A0); // Read potentiometer value
   int motorAngle = map(potValue, 0, 1023, 0 , 280); // Map the potentiometer value from 0 to 280
-  
-  Serial.println("");
-  Serial.println("Pot Value:");
-  Serial.println(motorAngle, DEC);
-
-  
   double pidOut = pid.calculate(motorAngle);
-  int spd = map(pidOut, -100, 100, 0, 180); // Map the potentiometer value from 0 to 280
+  double spd = 90;
+  if(pidOut > 250){
+    spd = 180;
+  } else if(pidOut < -250){
+    spd = 0;
+  } else {
+    spd = map(pidOut, -250, 250, 0, 180); 
+  }
   
-  Serial.println("");
-  Serial.println("PID Output");
-  Serial.println(spd, DEC);
-
+  /*
+  //This way should work but it doesn't (T^T)
+  double spd = pidOut/4 + 90;
+  if(spd > 180){
+    spd = 180;
+  }
+  if(spd < 0){
+    spd = 0;
+  }
+  */
   myservo.write(spd);
 }
-
 
 
 

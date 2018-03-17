@@ -10,6 +10,7 @@ class PID {
 	double integral;
 	double lastTime;
 	double lastError;
+	bool firstIter;
  
 public:
 
