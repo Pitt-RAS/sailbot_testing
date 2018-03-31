@@ -1,12 +1,12 @@
-#include "imuRate.h"
+#include "Rate.h"
 #include <Arduino.h>
 
-imuRate::imuRate(int hz) {
+Rate::Rate(int hz) {
     periodUs = (1.0/(double)hz) * 1000000;
     lastUs = 0;
 }
 
-bool imuRate::needsRun() {
+bool Rate::needsRun() {
     unsigned long dt = micros() - lastUs;
     if ( dt >= periodUs ) {
         lastUs = micros();
@@ -15,7 +15,7 @@ bool imuRate::needsRun() {
     return false;
 }
 
-void imuRate::sleep() {
+void Rate::sleep() {
     unsigned long dt = micros() - lastUs;
 
     if ( dt < periodUs )

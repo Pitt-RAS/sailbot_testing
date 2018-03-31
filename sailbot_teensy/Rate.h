@@ -1,15 +1,15 @@
-#ifndef IMURATE_H
-#define IMURATE_H
+#ifndef RATE_H
+#define RATE_H
 
-class imuRate {
+class Rate {
 public:
-    imuRate(int);
+    Rate(int);
     bool needsRun();
     void sleep();
+    
 private:
-    int periodUs;
+    unsigned long periodUs;
     unsigned long lastUs;
 };
-
 
 #endif
